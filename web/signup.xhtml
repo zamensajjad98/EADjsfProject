@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    #{session.setAttribute("title","Sign Up")}
+   <ui:include src="head.xhtml"></ui:include>
+    <h:body>
+        <ui:include src="nav.xhtml"></ui:include>
+        <div class="container">
+            <h:form>
+                <div class="form-group">
+                    <h:outputLabel value="Enter Name"></h:outputLabel>
+                    <h:inputText styleClass="form-control" id="txtname" value="#{personMBean.person.name}" required="true" requiredMessage="Please enter your first name"></h:inputText>
+                    <h:message for="txtname" style="color:red" />
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value="Enter UserName"></h:outputLabel>
+                    <h:inputText styleClass="form-control" id="txtuname" value="#{personMBean.person.username}" required="true" requiredMessage="Please enter your username">
+                        <f:validateRegex pattern="^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$"></f:validateRegex>
+                    </h:inputText>
+                    <h:message for="txtuname" style="color:red" />
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value="Enter Email"></h:outputLabel>
+                    <h:inputText styleClass="form-control" id="txtmail" value="#{personMBean.person.email}" required="true" requiredMessage="Please enter your Email"></h:inputText>
+                    <h:message for="txtmail" style="color:red" />
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value="Enter Password"></h:outputLabel>
+                    <h:inputSecret styleClass="form-control" id="txtpassword" value="#{personMBean.person.password}" required="true" requiredMessage="Please enter your password">
+                        <f:validateRegex pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^*-]).{8,16}$"></f:validateRegex>
+                    </h:inputSecret>
+                    <h:message for="txtpassword" style="color:red" />
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value="Enter Phone Number"></h:outputLabel>
+                    <h:inputText styleClass="form-control" id="txtphone" value="#{personMBean.person.phone}" required="true" requiredMessage="Please enter your Phone No">
+                        <f:validateRegex pattern="^(03)([0-9]{9})$"></f:validateRegex>
+                    </h:inputText>
+                    <h:message for="txtphone" style="color:red" />
+
+                </div>
+                <div class="form-group">
+                    <h:commandButton styleClass="btn btn-primary" value="signup" action="#{personMBean.register}"></h:commandButton>
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+</html>
